@@ -12,8 +12,9 @@ uint8_t transform(uint8_t byte) {
 }
 
 void handle(char *bytes) {
-  printf("%c%c%c%c", transform(bytes[3]), transform(bytes[2]),
-         transform(bytes[1]), transform(bytes[0]));
+  for (int i = 3; i >= 0; i--) {
+    printf("%c", bytes[i]);
+  }
 }
 
 int main(int argc, char *argv[]) {

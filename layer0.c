@@ -3,7 +3,9 @@
 #include "unistd.h"
 
 void handle(char *bytes) {
-  printf("%c%c%c%c", bytes[3], bytes[2], bytes[1], bytes[0]);
+  for (int i = 3; i >= 0; i--) {
+    printf("%c", bytes[i]);
+  }
 }
 
 int main(int argc, char *argv[]) {

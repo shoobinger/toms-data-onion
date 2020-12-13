@@ -13,7 +13,7 @@ uint8_t transform(uint8_t byte) {
 
 void handle(char *bytes) {
   for (int i = 3; i >= 0; i--) {
-    printf("%c", bytes[i]);
+    printf("%c", transform(bytes[i]));
   }
 }
 

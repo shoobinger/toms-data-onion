@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
-int process_ascii85_input(int fd, void (*handle)(char *)) {
+int process_ascii85_input(int fd, void (*handle_byte)(uint8_t)) {
   char buffer[5];
-  // Skip two-byte starting sybols.
+  // Skip two-byte starting symbols.
   read(fd, buffer, 2);
 
   for (;;) {
@@ -24,9 +24,11 @@ int process_ascii85_input(int fd, void (*handle)(char *)) {
     for (int i = 0; i < bytes_count; i++) {
       res += (buffer[i] - 33) * pow(85, 4 - i);
     }
-    char *bytes = (char *)&res;
+    uint8_t *bytes = (uint8_t *)&res;
 
-    handle(bytes);
+    for (int i = 3; i >= 0; i--) {
+      handle_byte(bytes[i]);
+    }
   }
   return 0;
 }

@@ -1,5 +1,4 @@
 #include "ascii85.h"
-#include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -11,11 +10,7 @@ uint8_t transform(uint8_t byte) {
   return (flipped >> 1) | (last << 7);
 }
 
-void handle(char *bytes) {
-  for (int i = 3; i >= 0; i--) {
-    printf("%c", transform(bytes[i]));
-  }
-}
+void handle(uint8_t byte) { printf("%c", transform(byte)); }
 
 int main(int argc, char *argv[]) {
   process_ascii85_input(STDIN_FILENO, handle);
